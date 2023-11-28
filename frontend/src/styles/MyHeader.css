@@ -1,0 +1,29 @@
+.nav-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 6rem;
+    border-bottom: 1px solid white;
+  }
+  
+.nav-text{
+    text-decoration: none;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 26.813rem;
+}
+
+.nav-text a:hover,
+.nav-text a:focus
+{
+    color: var(--orange-dark);
+    text-decoration: none;
+}
+
+
+
+
+
+
