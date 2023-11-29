@@ -2,13 +2,11 @@
   font-family: 'Manrope', sans-serif;
   --orange-dark: #D87D4A;
   --orange-light: #fbaf85;
-  --black-dark: #000000;
+  --black-dark: 0,0,0;
   --black-light: #101010 ;
   --white-dark: #F1F1F1;
   --white-medium: #FAFAFA;
   --white-light: #FFFFFF ;
-
-  background-color: #242424;
   
 
 }
@@ -45,6 +43,7 @@ h4{
   line-height: normal;
   letter-spacing: 2px;
   text-transform: uppercase;
+  font-weight:700;
 }
 
 h5{
@@ -101,6 +100,46 @@ p{
 .container-desktop{
   width: 80%;
   margin-inline: auto;
+  
 }
+
+.orange-btn{
+  text-transform: uppercase;
+  color: white;
+  background-color: var(--orange-dark);
+  border: none;
+  height: 48px;
+  width: 160px;
+  margin-top: 11px;
+  font-weight: 700;
+}
+
+.black-btn{
+  text-transform: uppercase;
+  color: white;
+  background-color: var(--black-light);
+  border: none;
+  height: 48px;
+  width: 160px;
+  margin-top: 11px;
+  font-weight: 700;
+
+}
+
+.no-border-btn{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 3.5rem;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(var(--black-dark), 0.5);
+  border: none;
+
+
+}
+
 
 

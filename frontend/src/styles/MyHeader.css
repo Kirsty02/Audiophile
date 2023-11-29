@@ -1,9 +1,12 @@
 .nav-wrapper{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 6rem;
     border-bottom: 1px solid white;
+    z-index: 1000;
+    
   }
   
 .nav-text{
@@ -14,14 +17,22 @@
     justify-content: space-between;
     width: 26.813rem;
 }
+.top-logo, .basket-icon{
+    fill: var(--white-light);
+}
 
 .nav-text a:hover,
-.nav-text a:focus
+.nav-text a:focus,
+.top-logo:focus,
+.top-logo:hover,
+.basket-icon:focus,
+.basket-icon:hover
+
 {
     color: var(--orange-dark);
     text-decoration: none;
+    fill: var(--orange-dark);
 }
-
 
 
 
