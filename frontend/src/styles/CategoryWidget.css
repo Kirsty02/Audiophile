@@ -1,0 +1,92 @@
+.widget-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+
+.card {
+    background-color: var(--white-dark);
+    position: relative;
+    height: 204px;
+    flex-grow: 1;
+    border-radius: 1rem;
+    overflow: visible;
+    margin-bottom: 5rem;
+    margin-top: 10rem;
+    font-weight: 700;
+    
+  }
+
+  .card img {
+    position: absolute;
+    top: -100px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 16rem;
+    height: auto;
+  }
+
+
+  .card-text{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); 
+    margin-bottom: 30px;
+ 
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  
+  }
+
+
+
+  /* Tablet Design */
+
+
+  @media(max-width: 75rem){
+    .card img {
+      top: -50px; 
+      left: 50%; 
+      transform: translateX(-50%); 
+      width: 10rem;
+      height: auto;
+    }
+    .card {
+      height: 165px;
+    }
+    h6{
+      font-size: 15px;
+    }
+
+  }
+
+
+  /* Mobile Design */
+
+@media(max-width:40rem ){
+  .widget-row{
+    margin-top: 3rem;
+    flex-direction: column;
+    gap: 1rem;
+    
+  }
+  .card {
+    position: relative;
+    border-radius: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    margin-top: 3rem;
+  }
+
+
+  
+  
+}
