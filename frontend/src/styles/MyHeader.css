@@ -32,9 +32,78 @@
     color: var(--orange-dark);
     text-decoration: none;
     fill: var(--orange-dark);
+    cursor: pointer;
 }
 
 
+
+/** Tablet Design */
+.icon-and-logo{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+.mobile-nav-toggle{
+    display: none;
+    border: none;
+    background-color: transparent;
+}
+
+.icon-hamburger{
+    fill: var(--white-light);
+}
+
+.icon-hamburger:hover,
+.icon-hamburger:focus{
+    fill: var(--orange-dark);
+    cursor: pointer;
+}
+
+.tablet-menu{
+    background-color: var(--white-light);
+    z-index: 999;
+    position: absolute;
+    width: 100%;
+    transform: translateY(-1px);
+    display: none;
+}
+
+.grey-background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    z-index: 998;
+    display: none;
+  }
+
+.is-opened{
+    display: block;
+}
+@media(max-width: 75rem){
+    .primary-navigation{
+        display: none;
+    }
+    .mobile-nav-toggle{
+        display: block;
+    } 
+}
+
+
+
+/* Mobile design */
+
+@media(max-width: 40rem){
+    .top-logo{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: -1rem;
+    }
+}
 
 
 

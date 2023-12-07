@@ -11,6 +11,7 @@ function CategoryWidget() {
   return (
     <>
         <div className='container-desktop'>
+            
             <div className='widget-row'>
                 <div className='card'>
                     <img className='' src={headphoneWidget}/>

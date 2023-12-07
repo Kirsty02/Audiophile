@@ -1,0 +1,168 @@
+.primary-footer{
+    position: relative;
+    background-color: var(--black-light);
+    margin-top: 10em;
+} 
+.footer-conatainer{
+    margin-inline: auto;
+    max-width: 1110px;
+    padding-right: 5rem;
+    padding-left: 5rem;
+}
+
+@media (max-width: 1200px) {
+    .footer-conatainer{
+      max-width: 689px;
+      padding-right: 1rem;
+      padding-left: 1rem;
+    }
+  
+    
+  }
+
+.footer-conatainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    
+    /* right: 80%; */
+    border-top: 4px solid var(--orange-dark); 
+    width: 101px; 
+}
+
+
+.bottom-nav-flex{
+    padding-top: 5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.nav-p-and-socials{
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+    color: var(--white-light);
+    display: flex;
+}
+
+.p-box{
+    flex: 1;
+    opacity: 0.35;
+
+}
+
+.top-p{
+    margin-bottom: 2rem;
+}
+
+
+.socials-box{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 1rem;
+}
+
+.socials-icon{
+    fill: var(--white-light);
+}
+
+.socials-icon:hover,
+.socials-icon:focus{
+    fill: var(--orange-dark);
+    cursor: pointer;
+}
+
+.nav-text-bottom {
+    text-decoration: none;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 26.813rem;
+}
+
+
+.nav-text-bottom a:hover,
+.nav-text-bottom  a:focus
+{
+    color: var(--orange-dark);
+    text-decoration: none;
+    fill: var(--orange-dark);
+    cursor: pointer;
+}
+
+
+
+/* Tablet Design*/
+
+
+@media(max-width: 75rem){
+    .primary-footer{
+        margin-top: 5em;
+    } 
+    .bottom-nav-flex{
+        flex-direction: column;
+        gap: 2rem;
+    }
+  
+    .p-box{
+        max-width: 760px;
+    }
+    .nav-p-and-socials{
+        display: inline-block;
+    }
+    .top-p{
+        margin-bottom: 4rem;
+    }
+    .socials-box{
+        transform: translate(-5%,-100%);
+    }
+
+}
+
+/* Mobile Design */
+
+@media(max-width: 48rem){
+    .nav-text-bottom {
+        flex-direction: column;
+        width: auto;
+        gap: 1rem;
+    }
+    .top-logo{
+        align-self: center;
+    }
+    .p-box{
+        text-align: center;
+    }
+    .top-p{
+        margin-bottom: 2rem;
+    }
+    .socials-box{
+        transform: translate(0%,0%);
+    }
+    .nav-p-and-socials{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+    .footer-conatainer::before {
+        margin: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        /* right: 80%; */
+        border-top: 4px solid var(--orange-dark); 
+        width: 101px; 
+    }
+
+   
+
+
+}
+
+
+
+

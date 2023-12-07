@@ -4,21 +4,21 @@
     z-index: 100;
     width: 100%;
     height: 47rem;
-    background-color: #191919;
-
-
-    
+    background-color: #191919;  
+ 
 }
 
 .hero-content{
     position: relative;
-    width: 80%;
+    max-width: 1110px;
     height: inherit;
     margin-inline: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-left: 5rem;
 }
+
 
 .hero-img{
     width: 708.8px;
@@ -31,12 +31,23 @@
 }
 
 .left-hero{
+    position: relative;
     display: grid;
     grid-auto-flow: row;
     grid-gap: 24px;
     width: 24.875rem;
     color: white;
+    z-index: 2;
 }
+
+.right-hero{
+    position: relative;
+    z-index: 1;
+    transition: left 0.3s ease; 
+
+}
+
+
 
 /* Galerry Section*/
 
@@ -54,11 +65,14 @@
     overflow: hidden;
     align-items: center;
     justify-content: center;
+    border-radius: 1rem;
+    
 }
 
 .top-box img{
     width: 410px; 
     transform: translate(-40%, 20%); 
+    z-index: 2;
 }
 
 
@@ -77,22 +91,39 @@
   .image-container::before, .image-container::after {
     content: '';
     position: absolute;
-    top: 70%;
+    top: 90%;
     left: 10%;
     transform: translate(-50%, -50%);
     border: 2px solid white;
     opacity: 0.1;
     border-radius: 50%;
+
   }
   
   .image-container::before {
-    width: 700px;
-    height: 700px;
+    width: 500px;
+    height: 500px;
   }
   
   .image-container::after {
-    width: 500px;
-    height: 500px;
+    width: 1100px;
+    height: 1100px;
+    
+  }
+
+  .extra-ring-container::before {
+    content: '';
+    position: absolute;
+    top: 90%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    border: 2px solid white;
+    opacity: 0.1;
+    border-radius: 50%;
+    width: 425px; 
+    height: 425px; 
+
+
   }
 
 
@@ -100,10 +131,12 @@
 .middle-box{
     background-image: url(../assets/home/desktop/image-speaker-zx7.jpg);
     background-size: cover;
+    background-position: center;
     height: 320px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border-radius: 1rem;
 }
 
 .middle-box h4, .middle-box button{
@@ -119,13 +152,15 @@
     display: flex;
     gap: 2em;
     height: 320px;
-    margin-bottom: 5em;
+    margin-bottom: 10em;
 }
 
 .bottom-left-box{
     background-image: url(../assets/home/desktop/image-earphones-yx1.jpg);
     background-size: cover;
+    background-position: center;
     flex: 1;
+    border-radius: 1rem;
 }
 
 .bottom-right-box{
@@ -136,8 +171,152 @@
     align-items: flex-start;
     justify-content: center;
     gap: 2em;
+    border-radius: 1rem;
 }
 
 .bottom-right-box button, .bottom-right-box h4{
     margin-left: 120px;
 }
+
+
+
+
+
+
+/* Tablet Design*/
+
+@media(max-width: 75rem){
+    .hero-content{
+        max-width: 689px;
+        padding-right: 1rem;
+        padding-left: 1rem; 
+        justify-content: center;
+        text-align: center;
+
+    }
+    .right-hero{
+        display: none;
+    }
+
+    .left-hero{
+        justify-items: center;
+    }
+
+    .hero-container{
+        background-image: url('../assets/home/tablet/image-header.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+
+    .top-box{
+        flex-direction: column;
+        height: 45rem;
+        align-items: center;
+        justify-content: center; 
+    }
+    
+    .top-box img{
+        width: 12rem; 
+        transform: translate(0%, 0%); 
+        margin-bottom: 2rem;
+    }
+    
+    
+    .top-right-box{
+        text-align: center;
+        color: white;
+        justify-items: center;
+        display: grid;
+        gap: 1.5em;
+    }
+
+    .image-container::before, .image-container::after, .extra-ring-container::before  {
+        top: 40%;
+        left: 50%;
+    }
+
+    .middle-box{
+        background-image: url(../assets/home/tablet/image-speaker-zx7.jpg);
+    }
+    .middle-box h4, .middle-box button{
+        margin-left: 70px;
+    }
+
+    .bottom-left-box{
+        background-image: url(../assets/home/tablet/image-earphones-yx1.jpg);
+        padding-bottom: 2rem;
+    }
+
+    .bottom-right-box button, .bottom-right-box h4{
+        margin-left: 50px;
+    }
+}
+
+
+
+/* Mobile Design */
+
+@media(max-width: 30rem){
+    .top-box{
+        height: 38rem;
+    }
+    
+    .top-box img{
+        width: 9rem; 
+    }
+    .speaker-title{
+        font-size: 36px ;
+    }
+    
+    .top-right-box{
+        gap: 1em;
+    }
+    .image-container::before {
+        width: 300px;
+        height: 300px;
+      }
+      
+    .image-container::after {
+        width: 260px;
+        height: 260px;  
+     }
+    .extra-ring-container::before {
+        width: 500px; 
+        height: 500px; 
+     }
+
+    .middle-box{
+        background-image: url(../assets/home/mobile/image-speaker-zx7.jpg);
+    }
+
+    .bottom-box{
+        flex-direction: column;
+        height: 640px;
+    }
+    .middle-box h4, .middle-box button{
+        margin-left: 20px;
+    }
+    .bottom-right-box button, .bottom-right-box h4{
+        margin-left: 20px;
+    }
+    .hero-container{
+        background-image: url('../assets/home/mobile/image-header.jpg');
+        background-size: contain;
+    }
+    .left-hero{
+        grid-gap: 1rem;
+    }
+    .hero-text{
+        width: 328px;
+        opacity: 0.75;
+    }
+    
+
+
+
+
+
+}
+
