@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+
 
 import '../styles/Home.css'
+import MyHeader from './MyHeader';
 import heroimg from '../assets/home/tablet/image-header.jpg'; 
 import imageSpeaker from '../assets/home/desktop/image-speaker-zx9.png'; 
 import CategoryWidget from './CategoryWidget';
@@ -9,8 +11,9 @@ import TheFooter from './TheFooter';
 
 function Home() {
 
-  return (
-    <>
+    return (
+    <>  
+        <MyHeader></MyHeader>
         <div className='hero-container'>
             <div className='hero-content'>
                 <div className='left-hero' >
