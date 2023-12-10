@@ -1,0 +1,40 @@
+.top-black-banner{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 21rem;
+    background-color: var(--black-light);
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.content{
+    height: 100vh;
+    width: 100%;
+    margin-top: 21rem;
+}
+
+.categoryTitle{
+    position: relative;
+    color: var(--white-light);
+    transform: translateY(50px);
+}
+
+
+/* Tablet Design*/
+
+
+
+
+
+/* Mobile Design*/
+@media(max-width: 40rem){
+    .top-black-banner{
+        height: 12rem;
+    }
+    .categoryTitle{
+        font-size: 28px;
+    }
+
+}

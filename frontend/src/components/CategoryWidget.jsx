@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import '../styles/CategoryWidget.css';
 import headphoneWidget from '../assets/shared/desktop/image-category-thumbnail-headphones.png'; 
@@ -8,12 +9,18 @@ import earphoneWidget from '../assets/shared/desktop/image-category-thumbnail-ea
 
 function CategoryWidget() {
 
-  return (
+    const navigate = useNavigate();
+
+    const goToHeadphones = () => {
+        navigate('/headphones');
+    };
+
+    return (
     <>
         <div className='container-desktop'>
             
             <div className='widget-row'>
-                <div className='card'>
+                <div className='card' onClick={goToHeadphones}>
                     <img className='' src={headphoneWidget}/>
                     <div className='card-text'>
                         <h6>Headphones</h6>
