@@ -62,6 +62,7 @@ function Home() {
                     </div>
                 </div>
             </div>
+        
             <BottomBanner></BottomBanner>
             <TheFooter></TheFooter>
             

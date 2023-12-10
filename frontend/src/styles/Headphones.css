@@ -21,8 +21,73 @@
     transform: translateY(50px);
 }
 
+.item-preview-card{
+    display: flex;
+    gap: 8rem;
+
+}
+
+.item-preview-img{
+    width: 538px;
+    height: 528px;
+    flex-shrink: 0;
+    background-color: var(--white-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../assets/product-xx99-mark-one-headphones/desktop/image-category-page-preview.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+
+
+
+.item-preview-content{
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 445px;
+    gap: 2rem;
+}
 
 /* Tablet Design*/
+
+@media(max-width: 75rem){
+    .item-preview-card{
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .item-preview-img{
+        width: 100%;
+        height: 352px;
+        padding: 0;
+        background-image: url('../assets/product-xx99-mark-one-headphones/tablet/image-category-page-preview.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .item-preview-img-src{
+        height:400px;
+        width: 400px;
+        padding: 0;
+        
+    }
+    .item-preview-content{
+        align-items: center;
+        text-align: center;
+        margin: auto;
+        gap: 1.5rem;
+    }
+    .item-preview-content p{
+        width: 572px;
+    }
+
+
+}
 
 
 
