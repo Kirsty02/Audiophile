@@ -16,12 +16,15 @@ const pool = new Pool({
 app.use(express.static(path.join(__dirname, '..', 'frontend/dist')));
 app.use(express.json());
 
-// API Endpoint to retrieve Headphones category with images
-app.get('/headphones', async (req, res) => {
+// API Endpoint to retrieve products by category with images
+app.get('/products/:category', async (req, res) => {
   try {
+    const category = req.params.category;
+
+    // Fetch products for the given category
     const productResults = await pool.query(`
-      SELECT * FROM Product WHERE category = 'headphones'
-    `);
+      SELECT * FROM Product WHERE category = $1
+    `, [category]);
 
     const products = productResults.rows;
 

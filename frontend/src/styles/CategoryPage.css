@@ -105,5 +105,12 @@
     .item-preview-content h2{
         font-size: 28px;
     }
+    .item-preview-content{
+        max-width: 327px;
+
+    }
+    .content{
+        margin-top: 11rem;
+    }
 
 }

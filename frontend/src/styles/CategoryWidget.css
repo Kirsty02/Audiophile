@@ -46,6 +46,13 @@
   
   }
 
+  .card:hover, .card:focus{
+    color: var(--orange-dark);
+    .orange-btn{
+      color: var(--orange-dark);
+    }
+  }
+
 
 
   /* Tablet Design */

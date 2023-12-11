@@ -34,8 +34,8 @@ function MyHeader() {
                   <ul className='nav-text'>
                     <li className='sub-title'><Link to="/">Home</Link></li>
                     <li className='sub-title'><Link to="/headphones">Headphones</Link></li>
-                    <li className='sub-title'><a href="#"> Speakers </a></li>
-                    <li className='sub-title'><a href="#"> Earphones </a></li>
+                    <li className='sub-title'><Link to="/speakers">Speakers</Link></li>
+                    <li className='sub-title'><Link to="/earphones">Earphones</Link></li>
                   </ul>
                 </nav>
                 <div>

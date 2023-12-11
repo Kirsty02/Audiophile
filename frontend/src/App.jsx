@@ -1,7 +1,8 @@
 import './App.css'
 import Home from './components/Home.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Headphones from './components/Headphones.jsx'; 
+import CategoryPage from './components/CategoryPage';
+
 
 
 
@@ -10,8 +11,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/headphones" element={<Headphones />} />
-        // Add other routes as needed
+        <Route path="/headphones" element={<CategoryPage category="headphones" />} />
+        <Route path="/speakers" element={<CategoryPage category="speakers" />} />
+        <Route path="/earphones" element={<CategoryPage category="earphones" />} />
       </Routes>
     </Router>
   );
