@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import '../styles/CategoryWidget.css';
-import headphoneWidget from '../assets/shared/desktop/image-category-thumbnail-headphones.png'; 
-import speakerWidget from '../assets/shared/desktop/image-category-thumbnail-speakers.png'; 
-import earphoneWidget from '../assets/shared/desktop/image-category-thumbnail-earphones.png'; 
+import headphoneWidget from '/assets/shared/desktop/image-category-thumbnail-headphones.png'; 
+import speakerWidget from '/assets/shared/desktop/image-category-thumbnail-speakers.png'; 
+import earphoneWidget from '/assets/shared/desktop/image-category-thumbnail-earphones.png'; 
 
 
 

@@ -3,8 +3,8 @@ import React, {useState, useEffect} from 'react';
 
 import '../styles/Home.css'
 import MyHeader from './MyHeader';
-import heroimg from '../assets/home/tablet/image-header.jpg'; 
-import imageSpeaker from '../assets/home/desktop/image-speaker-zx9.png'; 
+import heroimg from '/assets/home/tablet/image-header.jpg'; 
+import imageSpeaker from '/assets/home/desktop/image-speaker-zx9.png'; 
 import CategoryWidget from './CategoryWidget';
 import BottomBanner from './BottomBanner';
 import TheFooter from './TheFooter';
