@@ -24,6 +24,7 @@
 .item-preview-card{
     display: flex;
     gap: 8rem;
+    margin-bottom: 5rem;
 
 }
 
@@ -70,12 +71,7 @@
         background-repeat: no-repeat;
         background-position: center;
     }
-    .item-preview-img-src{
-        height:400px;
-        width: 400px;
-        padding: 0;
-        
-    }
+
     .item-preview-content{
         align-items: center;
         text-align: center;
@@ -101,5 +97,10 @@
     .categoryTitle{
         font-size: 28px;
     }
-
+    .item-preview-img{
+        background-image: url('../assets/product-xx99-mark-one-headphones/mobile/image-category-page-preview.jpg');
+    }
+    .item-preview-content h2{
+        font-size: 28px;
+    }
 }

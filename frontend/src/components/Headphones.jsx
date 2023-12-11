@@ -3,17 +3,47 @@ import React, {useState, useEffect} from 'react';
 import '../styles/Headphones.css'
 import MyHeader from './MyHeader';
 import TheFooter from './TheFooter';
-import heroimg from '../assets/product-xx99-mark-one-headphones/desktop/image-category-page-preview.jpg'; 
+
+//Event listening for screen width 
+function useWindowSize() {
+    const [windowSize, setWindowSize] = useState({
+      width: window.innerWidth
+    });
+  
+    useEffect(() => {
+      function handleResize() {
+        setWindowSize({
+          width: window.innerWidth
+        });
+      }
+      
+      window.addEventListener('resize', handleResize);
+      handleResize();
+  
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+  
+    return windowSize;
+  }
 
 function Headphones() {
     const [headphones, setHeadphones] = useState([]);
+    const { width } = useWindowSize(); //Using event listener
 
+    //Fetching products and images
     useEffect(() => {
         fetch('/headphones')
           .then(response => response.json())
           .then(data => setHeadphones(data))
           .catch(error => console.error('Error fetching data: ', error));
       }, []);
+
+    // Determine the image type based on width
+    const getImageType = (width) => {
+        if (width <= 640) return 'mobile';
+        if (width <= 1200) return 'tablet';S
+        return 'desktop';
+    };
 
     return (
     <>
@@ -25,8 +55,6 @@ function Headphones() {
         <div className='container-desktop'> 
                 <div className='item-preview-card'>
                     <div className='item-preview-img'>
-
-
                     </div>
                     <div className='item-preview-content'>
                             <h2>XX99 Mark II Headphones </h2>
@@ -40,19 +68,22 @@ function Headphones() {
             </div>
 
             <div className="container-desktop">
-                {headphones.map((headphone, index) => (
-                    <div key={index} className='item-preview-card'>
-                        <div className='item-preview-img'>
-                            <img className='item-preview-img-src' src={heroimg} alt="Item image" />
-
+                {headphones.map((headphone, index) => {
+                     const imageType = getImageType(width);
+                     const imageUrl = headphone.images[imageType]; 
+                     return(
+                        <div key={index} className='item-preview-card'>
+                            <div className='item-preview-img'  style={{ backgroundImage: `url(${imageUrl})` }}>
+                            </div>
+                            <div className='item-preview-content'>
+                                <h2>{headphone.name}</h2>
+                                <p>{headphone.description}</p>
+                                <button className='orange-btn'> See product</button>
+                            </div>
                         </div>
-                        <div className='item-preview-content'>
-                            <h3>{headphone.name}</h3>
-                            <p>{headphone.description}</p>
-                        </div>
-                    </div>
-                    
-                ))}
+                     );   
+                    }
+                )}
             </div> 
         </div>
         <TheFooter></TheFooter>
