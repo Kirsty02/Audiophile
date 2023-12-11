@@ -10,7 +10,6 @@
 }
 
 .content{
-    height: 100vh;
     width: 100%;
     margin-top: 21rem;
 }
@@ -36,7 +35,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('../assets/product-xx99-mark-one-headphones/desktop/image-category-page-preview.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -53,7 +51,15 @@
     justify-content: center;
     max-width: 445px;
     gap: 2rem;
+} 
+
+/* Reverse layout for desktop only */
+@media (min-width: 75rem) { 
+    .item-flex-reverse {
+        flex-direction: row-reverse;
+    }
 }
+
 
 /* Tablet Design*/
 
@@ -66,7 +72,6 @@
         width: 100%;
         height: 352px;
         padding: 0;
-        background-image: url('../assets/product-xx99-mark-one-headphones/tablet/image-category-page-preview.jpg');
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -97,10 +102,8 @@
     .categoryTitle{
         font-size: 28px;
     }
-    .item-preview-img{
-        background-image: url('../assets/product-xx99-mark-one-headphones/mobile/image-category-page-preview.jpg');
-    }
     .item-preview-content h2{
         font-size: 28px;
     }
+
 }

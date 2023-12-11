@@ -41,7 +41,7 @@ function Headphones() {
     // Determine the image type based on width
     const getImageType = (width) => {
         if (width <= 640) return 'mobile';
-        if (width <= 1200) return 'tablet';S
+        if (width <= 1200) return 'tablet';
         return 'desktop';
     };
 
@@ -52,27 +52,14 @@ function Headphones() {
             <h2 className='categoryTitle'> Headphones</h2> 
         </div>
         <div className='content'>
-        <div className='container-desktop'> 
-                <div className='item-preview-card'>
-                    <div className='item-preview-img'>
-                    </div>
-                    <div className='item-preview-content'>
-                            <h2>XX99 Mark II Headphones </h2>
-                            <p>The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your 
-                                premium headphone experience by reproducing the balanced depth and 
-                                precision of studio-quality sound.
-                            </p>
-                            <button className='orange-btn'> See product</button>
-                    </div>
-                </div>
-            </div>
-
             <div className="container-desktop">
                 {headphones.map((headphone, index) => {
+                     // Determine the layout based on the index
+                     const layoutClass = index % 2 === 0 ? "item-flex" : "item-flex-reverse";
                      const imageType = getImageType(width);
                      const imageUrl = headphone.images[imageType]; 
                      return(
-                        <div key={index} className='item-preview-card'>
+                        <div key={headphone.product_id} className={`item-preview-card ${layoutClass}`}>
                             <div className='item-preview-img'  style={{ backgroundImage: `url(${imageUrl})` }}>
                             </div>
                             <div className='item-preview-content'>

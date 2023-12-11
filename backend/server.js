@@ -16,11 +16,36 @@ const pool = new Pool({
 app.use(express.static(path.join(__dirname, '..', 'frontend/dist')));
 app.use(express.json());
 
-// API Endpoint to retrieve Headphones category
+// API Endpoint to retrieve Headphones category with images
 app.get('/headphones', async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM Product WHERE category = 'headphones'");
-    res.json(result.rows);
+    const productResults = await pool.query(`
+      SELECT * FROM Product WHERE category = 'headphones'
+    `);
+
+    const products = productResults.rows;
+
+    // Get all images for these products in one go to reduce database calls
+    const imageResults = await pool.query(`
+      SELECT * FROM ProductImages WHERE product_id = ANY($1)
+    `, [products.map(p => p.product_id)]);
+
+    // Convert the image results to a map for easy lookup
+    const imageMap = imageResults.rows.reduce((map, image) => {
+      if (!map[image.product_id]) {
+        map[image.product_id] = {};
+      }
+      map[image.product_id][image.image_type] = image.image_url;
+      return map;
+    }, {});
+
+    // Combine the products and images
+    const productsWithImages = products.map(product => ({
+      ...product,
+      images: imageMap[product.product_id] || {}
+    }));
+
+    res.json(productsWithImages);
   } catch (err) {
     console.error(err);
     res.status(500).send('Server error');
