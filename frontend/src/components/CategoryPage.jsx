@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import '../styles/CategoryPage.css'
 import MyHeader from './MyHeader';
 import TheFooter from './TheFooter';
+import CategoryWidget from './CategoryWidget';
+import BottomBanner from './BottomBanner';
 
 //Event listening for screen width 
 function useWindowSize() {
@@ -33,11 +34,18 @@ function CategoryPage({ category }) {
 
     //Fetching products and images
     useEffect(() => {
-        fetch(`/products/${category}`) // Dynamic category endpoint
-          .then(response => response.json())
-          .then(data => setProducts(data)) 
-          .catch(error => console.error('Error fetching data: ', error));
-    }, [category]); 
+      fetch(`/products/${category}`) 
+        .then(response => response.json())
+        .then(data => {
+            // Sort products so new products come first
+            const sortedData = data.sort((a, b) => {
+                return b.is_new - a.is_new;
+            });
+            setProducts(sortedData);
+        })
+        .catch(error => console.error('Error fetching data: ', error));
+  }, [category]);
+
 
     // Determine the image type based on width
     const getImageType = (width) => {
@@ -64,6 +72,7 @@ function CategoryPage({ category }) {
                             <div className='item-preview-img'  style={{ backgroundImage: `url(${imageUrl})` }}>
                             </div>
                             <div className='item-preview-content'>
+                                {product.is_new && <h2 className='overline'>NEW PRODUCT</h2>}
                                 <h2>{product.name}</h2>
                                 <p>{product.description}</p>
                                 <button className='orange-btn'> See product</button>
@@ -74,6 +83,8 @@ function CategoryPage({ category }) {
                 )}
             </div> 
         </div>
+        <CategoryWidget></CategoryWidget>
+        <BottomBanner></BottomBanner>
         <TheFooter></TheFooter>
     </>
   )

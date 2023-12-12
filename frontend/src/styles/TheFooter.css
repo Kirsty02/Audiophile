@@ -10,6 +10,15 @@
     padding-left: 5rem;
 }
 
+.bottom-logo{
+    fill: var(--white-light);
+}
+
+.bottom-logo:hover, .bottom-logo:focus{
+    fill: var(--orange-dark);
+    cursor: pointer;
+}
+
 @media (max-width: 1200px) {
     .footer-conatainer{
       max-width: 689px;
@@ -131,7 +140,8 @@
         width: auto;
         gap: 1rem;
     }
-    .top-logo{
+    .bottom-logo{
+        position: relative;
         align-self: center;
     }
     .p-box{

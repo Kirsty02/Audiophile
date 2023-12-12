@@ -48,7 +48,8 @@
 
   .card:hover, .card:focus{
     color: var(--orange-dark);
-    .orange-btn{
+    cursor: pointer;
+    .no-border-btn{
       color: var(--orange-dark);
     }
   }
@@ -68,6 +69,8 @@
     }
     .card {
       height: 165px;
+      margin-bottom: 1rem;
+      margin-top: 8rem;
     }
     h6{
       font-size: 15px;
