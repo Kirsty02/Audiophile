@@ -1,0 +1,209 @@
+.top-black-bar{
+    position: absolute;
+    top: 0;
+    margin: auto;
+    width: 100%;
+    height: 96px;
+    background-color: var(--black-light);
+}
+
+.product_preview{
+    margin-top: 9rem;
+    display: flex;
+    gap: 5rem;
+}
+
+.product_preview_image{
+    background-image: url(/assets/product-xx59-headphones/desktop/image-category-page-preview.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 540px;
+    height: 560px;
+    flex-shrink: 0;
+    background-color: var(--white-dark);
+
+}
+
+.product_preview_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.product_cart_btn_flex{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+/* Quantity selctor*/
+.quantity-selector {
+    display: flex;
+    border: none;
+    width: fit-content;
+    margin-top: 11px;
+  }
+  
+  .quantity-selector button {
+    background-color: var(--white-dark);
+    color: grey;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    
+  }
+  
+  .quantity-selector button:hover, .quantity-selector button:focus{
+    color: var(--orange-dark);
+  }
+
+
+  .quantity-selector input {
+    text-align: center;
+    border:none;
+    padding: 12px 20px;
+    width: 30px;
+    background-color: var(--white-dark);
+    pointer-events: none;
+    font-weight: 700;
+  }
+
+
+  /* Features and icludes box */
+
+.features_includes_box{
+    display: flex;
+    gap: 6rem;
+    margin-top: 5rem;
+
+}
+
+.features_box{
+    display: flex;
+    flex-direction: column;
+    max-width: 635px;
+    gap: 2rem;
+
+}
+
+.box-list li{
+    display: flex;
+    gap: 1rem;
+    margin-bottom: .50rem;
+    list-style: none;
+}
+
+.box-list li p{
+    opacity: 0.4;
+    font-weight: 700;
+}
+
+.includes_box{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+}
+
+.quantity{
+    font-weight: 700;
+    color: var(--orange-dark);
+    font-size: 15px;
+    font-family: Manrope;
+}
+
+
+/**Product Gallery*/
+
+
+.product-gallery{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+
+}
+.two-img-flex{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+}
+.top-img{
+    background-image: url(/assets/product-xx59-headphones/desktop/image-gallery-1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 16rem;
+    width: 27rem;
+    border-radius: 1rem;
+
+}
+.bottom-img{
+    background-image: url(/assets/product-xx59-headphones/desktop/image-gallery-2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 16rem;
+    width: 27rem;
+    border-radius: 1rem;
+    
+
+}
+
+.large-img{
+    background-image: url(/assets/product-xx59-headphones/desktop/image-gallery-3.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 40rem;
+    height: 34rem;
+    flex-shrink: 0;
+    border-radius: 1rem;
+
+}
+
+
+/* Others container*/
+
+.others-contaienr{
+    text-align: center;
+    margin: auto;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.others-flex{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+
+}
+
+.others-img{
+    background-color: var(--white-dark);
+    height: 350px;
+    width: 318px;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+    background-image: url(/assets/product-xx59-headphones/desktop/image-category-page-preview.jpg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.others-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
