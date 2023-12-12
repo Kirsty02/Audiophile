@@ -9,8 +9,16 @@ import imageSpeaker from '/assets/home/desktop/image-speaker-zx9.png';
 import CategoryWidget from './CategoryWidget';
 import BottomBanner from './BottomBanner';
 import TheFooter from './TheFooter';
+import ProductDetails from './ProductDetails';
 
 function Home() {
+
+    const navigate = useNavigate();
+
+    const goToProduct = () => {
+        navigate('/product');
+        closeNav();
+    };
 
     return (
     <>  
@@ -23,7 +31,7 @@ function Home() {
                     <p className='hero-text'> Experience natural, lifelike audio and exceptional
                         build quality made for the passionate music enthusiast.
                     </p>
-                    <button className='orange-btn'> See Product</button>
+                    <button className='orange-btn' onClick={goToProduct}> See Product</button>
                 </div>
                 <div className='right-hero'>
                     <img className='hero-img' src={heroimg}/>
