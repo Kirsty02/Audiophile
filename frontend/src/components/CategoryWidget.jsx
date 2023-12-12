@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import '../styles/CategoryWidget.css';
@@ -9,12 +9,22 @@ import earphoneWidget from '/assets/shared/desktop/image-category-thumbnail-earp
 
 
 
-function CategoryWidget() {
+function CategoryWidget({ closeNav }) {
 
     const navigate = useNavigate();
 
     const goToHeadphones = () => {
         navigate('/headphones');
+        closeNav();
+    };
+    const goToSpeakers = () => {
+        navigate('/speakers');
+        closeNav();
+        
+    };
+    const goToEarphones = () => {
+        navigate('/earphones');
+        closeNav();
     };
 
     return (
@@ -32,7 +42,7 @@ function CategoryWidget() {
                         </button>
                     </div>
                 </div>
-                <div className='card'>
+                <div className='card' onClick={goToSpeakers}>
                     <img className='' src={speakerWidget}/>
                     <div className='card-text'>
                         <h6>Speakers</h6>
@@ -42,7 +52,7 @@ function CategoryWidget() {
                         </button>
                     </div>
                 </div>
-                <div className='card'>
+                <div className='card' onClick={goToEarphones}>
                     <img className='' src={earphoneWidget}/>
                     <div className='card-text'>
                         <h6>Earphones</h6>
