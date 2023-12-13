@@ -52,8 +52,7 @@ function ProductDetails() {
             <div className='features_includes_box'>
                 <div className='features_box'>
                     <h4> Features</h4>
-                    <p>Featuring a genuine leather head strap and premium earcups, these headphones deliver 
-                        superior comfort for those who like to enjoy endless listening. It includes intuitive
+                    <p>Featuring a genuine leather head strap and premium earcups, these headphones deliver superior comfort for those who like to enjoy endless listening. It includes intuitive
                          controls designed for any situation. Whether you’re taking a business call or just in
                           your own personal space,
                          the auto on/off and pause features ensure that you’ll never miss a beat.
@@ -68,18 +67,22 @@ function ProductDetails() {
 
                 </div>
                 <div className='includes_box'>
-                    <h4> In the box </h4> 
-                    <ul className='box-list'>
-                        <li> <span className='quantity'>1x</span> <p> Headphone unit</p></li>
-                        <li> <span className='quantity'>4x</span> <p> Replacement Earcuops</p></li>
-                        <li> <span className='quantity'>1x</span>  <p> User Manual</p></li>
-                        <li> <span className='quantity'>2x</span>  <p> 3.5mm 5m Audio Cabel</p></li>
-                        <li> <span className='quantity'>1x</span>  <p> Travel Bag</p></li>
-                    </ul>
-
+                    <div>
+                        <h4> In the box </h4> 
+                    </div>
+                    <div>
+                        <ul className='box-list'>
+                            <li> <span className='quantity'>1x</span> <p> Headphone unit</p></li>
+                            <li> <span className='quantity'>4x</span> <p> Replacement Earcuops</p></li>
+                            <li> <span className='quantity'>1x</span>  <p> User Manual</p></li>
+                            <li> <span className='quantity'>2x</span>  <p> 3.5mm 5m Audio Cabel</p></li>
+                            <li> <span className='quantity'>1x</span>  <p> Travel Bag</p></li>
+                        </ul>
+                    </div>
                 </div>
 
             </div>
+       
             <div className='product-gallery'>
                 <div className='two-img-flex'> 
                     <div className="top-img"></div>
@@ -88,6 +91,9 @@ function ProductDetails() {
                 <div className='large-img'>  
                 </div>
             </div>
+
+
+            
 
             <div className='others-contaienr'>
                 <h4> You may also like</h4>

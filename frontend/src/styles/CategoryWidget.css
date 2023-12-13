@@ -81,7 +81,7 @@
 
   /* Mobile Design */
 
-@media(max-width:40rem ){
+@media(max-width:45rem ){
   .widget-row{
     margin-top: 3rem;
     flex-direction: column;
@@ -91,7 +91,7 @@
   .card {
     position: relative;
     border-radius: 1rem;
-    width: 100%;
+    width: 327px;
     margin-bottom: 1rem;
     margin-top: 3rem;
   }
