@@ -26,7 +26,7 @@ function App() {
         <Route path="/headphones" element={<CategoryPage category="headphones" />} />
         <Route path="/speakers" element={<CategoryPage category="speakers" />} />
         <Route path="/earphones" element={<CategoryPage category="earphones" />} />
-        <Route path="/product" element={<ProductDetails />} />
+        <Route path="/product/:slug" element={<ProductDetails />} />
       </Routes>
     </Router>
   );

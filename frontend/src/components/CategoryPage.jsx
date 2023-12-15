@@ -1,32 +1,13 @@
 import React, {useState, useEffect} from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import '../styles/CategoryPage.css'
 import MyHeader from './MyHeader';
 import TheFooter from './TheFooter';
 import CategoryWidget from './CategoryWidget';
 import BottomBanner from './BottomBanner';
+import useWindowSize from '../hooks/useWindowSize';
 
-//Event listening for screen width 
-function useWindowSize() {
-    const [windowSize, setWindowSize] = useState({
-      width: window.innerWidth
-    });
-  
-    useEffect(() => {
-      function handleResize() {
-        setWindowSize({
-          width: window.innerWidth
-        });
-      }
-      
-      window.addEventListener('resize', handleResize);
-      handleResize();
-  
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
-  
-    return windowSize;
-  }
+
 
 function CategoryPage({ category }) {
     const [products, setProducts] = useState([]); 
@@ -54,6 +35,13 @@ function CategoryPage({ category }) {
         return 'desktop';
     };
 
+    const navigate = useNavigate();
+
+    // Handler for when a product is clicked
+    const handleProductClick = (slug) => {
+      navigate(`/product/${slug}`); // Navigate to the ProductDetails page
+    };
+
     return (
     <>
         <MyHeader></MyHeader>
@@ -75,7 +63,7 @@ function CategoryPage({ category }) {
                                 {product.is_new && <h2 className='overline'>NEW PRODUCT</h2>}
                                 <h2>{product.name}</h2>
                                 <p>{product.description}</p>
-                                <button className='orange-btn'> See product</button>
+                                <button className='orange-btn' onClick={() => handleProductClick(product.slug)}> See product</button>
                             </div>
                         </div>
                      );   

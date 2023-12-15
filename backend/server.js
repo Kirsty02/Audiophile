@@ -55,6 +55,48 @@ app.get('/products/:category', async (req, res) => {
   }
 });
 
+// Second API Endpoint to retrieve a single product's details by slug
+app.get('/product/:slug', async (req, res) => {
+  try {
+    const { slug } = req.params;
+
+    // Fetch the main product details
+    const productResult = await pool.query('SELECT * FROM Product WHERE slug = $1', [slug]);
+    const product = productResult.rows[0];
+
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    // Fetch related images, includes, gallery, and others
+    const imagesResult = await pool.query('SELECT * FROM ProductImages WHERE product_id = $1', [product.product_id]);
+    const includesResult = await pool.query('SELECT * FROM ProductIncludes WHERE product_id = $1', [product.product_id]);
+    const galleryResult = await pool.query('SELECT * FROM ProductGallery WHERE product_id = $1', [product.product_id]);
+    const othersResult = await pool.query('SELECT * FROM ProductOthers WHERE product_id = $1', [product.product_id]);
+
+    // Transform the results into a structured object
+    const productDetails = {
+      ...product,
+      images: imagesResult.rows,
+      includes: includesResult.rows,
+      gallery: galleryResult.rows,
+      others: othersResult.rows.map(other => ({
+        ...other,
+        mobile: other.mobile,
+        tablet: other.tablet,
+        desktop: other.desktop
+      }))
+    };
+
+    res.json(productDetails);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
+
+
 // The "catchall" handler: send back index.html file
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'frontend/dist/index.html'));
