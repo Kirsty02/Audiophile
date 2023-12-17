@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/ProductDetails.css';
 import MyHeader from './MyHeader';
 import TheFooter from './TheFooter';
@@ -19,6 +19,12 @@ function ProductDetails() {
 
     const { width } = useWindowSize(); 
     const { slug } = useParams();
+
+    const navigate = useNavigate();
+
+    const goBack = () => {
+        navigate(-1); // Navigate back to the previous page
+    };
     
 
     useEffect(() => {
@@ -90,7 +96,7 @@ function ProductDetails() {
         <div className='top-black-bar'> 
         </div>
         <div className='container-desktop'>
-            <div className='go-back-div'>
+            <div className='go-back-div' onClick={goBack}>
                 <p >Go Back</p>
             </div>
             <div className='product_preview'>
@@ -155,7 +161,7 @@ function ProductDetails() {
                             <div key={index} className='others-card'>
                                 <div className='others-img' style={{ backgroundImage: `url(${otherImageUrl})` }}></div>
                                 <h6>{other.other_product_name}</h6>
-                                <button className='orange-btn' onClick={() => {handleProductClick(product.slug)}}> See product</button>
+                                <button className='orange-btn' onClick={() => {handleProductClick(other.other_product_slug)}}> See product</button>
                             </div>
                         );
                     })}

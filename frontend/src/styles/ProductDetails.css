@@ -9,6 +9,11 @@
 .go-back-div{
     margin-top: 2rem;
 }
+.go-back-div:hover, .go-back-div:focus{
+    font-weight: 700;
+    color: var(--orange-dark);
+    cursor: pointer;
+}
 .product_preview{
     margin-top: 2rem;
     display: flex;
