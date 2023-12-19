@@ -1,15 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import '../styles/ProductDetails.css';
+
+import { addToCart } from '../features/cart/cartSlice';
 import MyHeader from './MyHeader';
 import TheFooter from './TheFooter';
-import CategoryWidget from './CategoryWidget';
 import BottomBanner from './BottomBanner';
 import useWindowSize from '../hooks/useWindowSize';
 
 
 
 function ProductDetails() {
+    const dispatch = useDispatch();
 
     const [quantity, setQuantity] = useState(1);
     const [productDetails, setProductDetails] = useState(null);
@@ -86,6 +89,24 @@ function ProductDetails() {
     const handleProductClick = (slug) => {
         navigate(`/product/${slug}`); 
     };
+
+
+    const handleAddToCart = () => {
+        
+        const mobileImageObject = productDetails.images.find(img => img.image_type === 'mobile');
+        const mobileImageUrl = mobileImageObject ? mobileImageObject.image_url : '';
+
+
+        dispatch(addToCart({
+            id: productDetails.product_id, 
+            name: productDetails.name,
+            price: productDetails.price,
+            quantity: quantity,
+            image: mobileImageUrl 
+        }));
+    };
+
+   
   
     
 
@@ -112,7 +133,7 @@ function ProductDetails() {
                             <input type="text" id="quantity" value={quantity} readOnly/>
                             <button className="increase" onClick={increaseValue}>+</button>
                         </div>
-                        <button className='orange-btn'> Add to cart</button>
+                        <button className='orange-btn' onClick={handleAddToCart}> Add to cart</button>
                     </div>
                 </div>
             </div>
