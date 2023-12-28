@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { updateItemQuantity, clearCart } from '../features/cart/cartSlice';
 
 
 import '../styles/Cart.css';
@@ -39,6 +40,10 @@ function Cart() {
         }
     };
 
+    const handleRemoveAll = () => {
+        dispatch(clearCart());
+    };
+
 
 
     return (
@@ -47,7 +52,7 @@ function Cart() {
         <div className='cart-container'>
             <div className='cart-top'>
                 <h6> Cart ({cartItems.length})</h6>
-                <p className='remove-text'> <u>Remove All</u></p>
+                <p className='remove-text' onClick={handleRemoveAll}> <u>Remove All</u></p>
             </div>
             <div className='cart-items'>
                 {cartItems.map((item, index) => (
