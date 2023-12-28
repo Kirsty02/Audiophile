@@ -1,0 +1,52 @@
+.checkout-container{
+    min-height: 100vh;
+    
+}
+
+.checkout-container-flex{
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+
+
+}
+
+.checkout-main-div{
+    width: 730px;
+    height: 1126px;
+    flex-shrink: 0;
+    background-color: var(--white-light);
+    border-radius: 1rem;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+}
+
+.checkout-summary-div{
+    width: 350px;
+    height: 250px;
+    background-color: var(--white-light);
+    border-radius: 1rem;
+    
+}
+
+.billing-container{
+    background-color: var(--white-dark);
+
+}
+
+.shipping-container{
+    background-color: var(--white-dark);
+
+}
+
+.payment-container{
+    background-color: var(--white-dark);
+
+
+}
+
+
