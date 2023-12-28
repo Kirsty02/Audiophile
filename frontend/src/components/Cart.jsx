@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateItemQuantity, clearCart } from '../features/cart/cartSlice';
+import { removeFromCart, updateItemQuantity, clearCart } from '../features/cart/cartSlice';
 
 
 import '../styles/Cart.css';
@@ -37,11 +37,19 @@ function Cart() {
         const item = cartItems.find(item => item.id === id);
         if (item.quantity > 1) {
             dispatch(updateItemQuantity({ id: id, quantity: item.quantity - 1 }));
+        }else {
+            if (window.confirm("Are you sure you want to remove this item from the cart?")) {
+                dispatch(removeFromCart(id));
+            }
         }
     };
 
+
     const handleRemoveAll = () => {
-        dispatch(clearCart());
+        if (window.confirm("Are you sure you want to remove this item from the cart?")) {
+            dispatch(clearCart());
+        }
+        
     };
 
 

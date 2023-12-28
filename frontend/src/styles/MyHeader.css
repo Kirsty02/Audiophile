@@ -105,6 +105,32 @@
     } 
 }
 
+.basket-cart-bubble{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: .5rem;
+}
+
+
+.cart-bubble{
+    top: 0;
+    right: 0;
+    background-color: #4c4c4c;
+    color: white;
+    border-radius: 1rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.cart-bubble p {
+    font-size: 10px;
+    font-weight: 700;
+}
 
 
 /* Mobile design */

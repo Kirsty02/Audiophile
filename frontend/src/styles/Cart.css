@@ -103,3 +103,32 @@
 .cart-container .quantity-selector input {
     width: 15px;
 }
+
+
+
+/* Mobile Design*/
+
+@media(max-width: 40rem){
+
+    .cart-container{
+        width: 320px;
+        margin: auto;
+    }
+
+
+}
+
+@media(max-width: 25rem){
+
+    .cart-container{
+        margin: auto;
+        width: 240px;
+ 
+    }
+    .total-flex{
+        width: 87%;
+    }
+    .go-checkout-div button{
+        width: 87%;
+    }
+}
