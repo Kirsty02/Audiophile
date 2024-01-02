@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { removeFromCart, updateItemQuantity, clearCart } from '../features/cart/cartSlice';
 
 
@@ -52,6 +53,12 @@ function Cart() {
         
     };
 
+    const navigate = useNavigate();
+
+    const goToCheckoutPage = () => {
+        navigate('/checkoutPage');
+    };
+
 
 
     return (
@@ -93,7 +100,7 @@ function Cart() {
                     <h6 > £ {totalPrice.toFixed(2)}</h6>
 
                 </div>
-                <button className='orange-btn'> Checkout</button>
+                <button className='orange-btn' onClick={goToCheckoutPage}> Checkout</button>
             </div>
         </div>
 

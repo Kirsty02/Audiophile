@@ -4,6 +4,7 @@ import Home from './components/Home.jsx'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import CategoryPage from './components/CategoryPage';
 import ProductDetails from './components/ProductDetails.jsx';
+import CheckoutPage from './components/checkoutPage.jsx';
 
 
 function ScrollToTop() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/speakers" element={<CategoryPage category="speakers" />} />
         <Route path="/earphones" element={<CategoryPage category="earphones" />} />
         <Route path="/product/:slug" element={<ProductDetails />} />
+        <Route path="/checkoutPage" element={<CheckoutPage/>} />
       </Routes>
     </Router>
   );
