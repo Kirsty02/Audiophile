@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import CategoryPage from './components/CategoryPage';
 import ProductDetails from './components/ProductDetails.jsx';
 import CheckoutPage from './components/checkoutPage.jsx';
-
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -17,20 +18,23 @@ function ScrollToTop() {
   return null;
 }
 
-
+const stripePromise = loadStripe('pk_live_51OUDykHx0vDLdlo3LB9qItA3NvDfjWp7ghtk16oigkF1BTcqklJQESpMYZJY6OkBSunnOPIPizLXDLPLbFeXaLSn00bVPvO3jn');
+ 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/headphones" element={<CategoryPage category="headphones" />} />
-        <Route path="/speakers" element={<CategoryPage category="speakers" />} />
-        <Route path="/earphones" element={<CategoryPage category="earphones" />} />
-        <Route path="/product/:slug" element={<ProductDetails />} />
-        <Route path="/checkoutPage" element={<CheckoutPage/>} />
-      </Routes>
-    </Router>
+    <Elements stripe={stripePromise}>
+      <Router>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/headphones" element={<CategoryPage category="headphones" />} />
+          <Route path="/speakers" element={<CategoryPage category="speakers" />} />
+          <Route path="/earphones" element={<CategoryPage category="earphones" />} />
+          <Route path="/product/:slug" element={<ProductDetails />} />
+          <Route path="/checkoutPage" element={<CheckoutPage/>} />
+        </Routes>
+      </Router>
+    </Elements>
   );
 }
 export default App

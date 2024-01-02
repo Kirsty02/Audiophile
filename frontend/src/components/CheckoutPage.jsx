@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import '../styles/CheckoutPage.css';
@@ -13,10 +16,77 @@ import TheFooter from './TheFooter';
 function CheckoutPage() {
 
     const navigate = useNavigate();
-
+    const cartItems = useSelector(state => state.cart.items);
+    
     const goBack = () => {
         navigate(-1); 
     };
+
+    //Total price
+    const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    //VAT
+    const vat = (totalPrice/100)*10;
+    //Grand total
+    const grandTotal = totalPrice + 50;
+    //Abreviate the name 
+    function abbreviateProductName(name) {
+        let abbreviatedName = name.replace("Mark", "MK");
+        const wordsToRemove = ["Headphones", "Speaker", "Wireless Earphones"];
+        for (const word of wordsToRemove) {
+            if (abbreviatedName.endsWith(word)) {
+                return abbreviatedName.replace(word, "").trim(); 
+            }
+        }
+        return abbreviatedName;
+    }
+
+    //Stripe
+    const stripe = useStripe();
+    const elements = useElements();
+    const [loading, setLoading] = useState(false);
+    
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      setLoading(true);
+
+      if (!stripe || !elements) {
+          setLoading(false);
+          return;
+      }
+
+      try {
+          // Call your backend to create the payment intent
+          const paymentIntentResponse = await axios.post('/create-payment-intent', {
+              amount: grandTotal * 100, // Convert amount to smallest currency unit
+          });
+
+          const clientSecret = paymentIntentResponse.data.clientSecret;
+
+          // Confirm the payment with the card details
+          const result = await stripe.confirmCardPayment(clientSecret, {
+              payment_method: {
+                  card: elements.getElement(CardElement),
+                  // Add billing details if necessary
+              },
+          });
+
+          if (result.error) {
+              // Show error to your customer
+              console.log(result.error.message);
+          } else {
+              if (result.paymentIntent.status === 'succeeded') {
+                  // Payment succeeded, navigate to a success page
+                  console.log('Payment succeeded');
+                  navigate('/success'); // Update with your success route
+              }
+          }
+      } catch (error) {
+          // Handle errors
+          console.error('Payment error:', error);
+      }
+
+      setLoading(false);
+  };
 
  
     return (
@@ -85,7 +155,7 @@ function CheckoutPage() {
                 <p className='sub-title'>Payment Details</p>
                 <div className='half-form-flex'>
                   <div className='form-flex-box'>
-                    <p>Payment Method</p>
+                    <p className='payment-title'>Payment Method</p>
                   </div>
                   <div class="radio-group form-flex-box">
                     <div className='radio-flex'>
@@ -114,31 +184,45 @@ function CheckoutPage() {
             </div>
             <div className='checkout-summary-div'>
               <h6>Summary</h6>
-              <div>
-                <p> Item </p>
-                <p> Item </p>
-                <p> Item </p>
-                <p> Item </p>
+              <div className='checkout-items'>
+                {cartItems.map((item, index) => (
+                      <div key={index} className='cart-item'>
+                          <div className='left-item'> 
+                              <div className='cart-img' style={{ backgroundImage: `url(${item.image})` }}></div>
+                              <div className='cart-info'> 
+                                  <h6 className='cart-item-title'>{abbreviateProductName(item.name)}</h6>
+                                  <p className='cart-grey'>£ {item.price}</p>
+                              </div>
+                          </div>
+                          <div className='right-item'> 
+                            <p className='cart-grey'> x{item.quantity}</p>
+
+                          </div>
+                      </div>
+                  ))}
               </div>
               <div className='bottom-summary-flex'>
                 <div className='checkout-flex'>
                   <h6 className='checkout-desc'>Total</h6>
-                  <h6>£ .....</h6>
+                  <h6>£ {totalPrice.toFixed(2)}</h6>
                 </div>
                 <div className='checkout-flex'>
                   <h6 className='checkout-desc'>Shipping</h6>
-                  <h6>£ .....</h6>
+                  <h6>£ 50</h6>
                 </div>
                 <div className='checkout-flex'>
                   <h6 className='checkout-desc'>Vat (included)</h6>
-                  <h6>£ .....</h6>
+                  <h6>£ {vat.toFixed(2)}</h6>
                 </div>
                 <div className='checkout-flex grand-total'>
                   <h6 className='checkout-desc'>Grand Total</h6>
-                  <h6 className='grand-total-h6'>£ .....</h6>
+                  <h6 className='grand-total-h6'>£ {grandTotal.toFixed(2)}</h6>
                 </div>
                 
-                <button className='orange-btn' > Continue & pay</button>
+                <form onSubmit={handleSubmit}>
+                  <CardElement />
+                  <button type="submit" className='orange-btn' disabled={!stripe}>Continue & pay</button>
+                </form>
                 
               </div>             
             </div>
@@ -146,6 +230,7 @@ function CheckoutPage() {
       </div>
 
       </div>
+
       
       <TheFooter></TheFooter>
     </>

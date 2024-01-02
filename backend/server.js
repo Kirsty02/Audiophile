@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const { Pool } = require('pg');
+const stripe = require('stripe')('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'); 
+
 const app = express();
 
 // Configure PostgreSQL connection
@@ -92,6 +94,22 @@ app.get('/product/:slug', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).send('Server error');
+  }
+});
+
+app.post('/create-payment-intent', async (req, res) => {
+  try {
+    const { amount } = req.body; // The total amount to charge the customer
+
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: amount,
+      currency: 'gbp', // or your preferred currency
+    });
+
+    res.json({ clientSecret: paymentIntent.client_secret });
+  } catch (error) {
+    console.error('Error creating payment intent:', error);
+    res.status(500).send({ error: error.message });
   }
 });
 
