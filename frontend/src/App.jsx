@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import CategoryPage from './components/CategoryPage';
 import ProductDetails from './components/ProductDetails.jsx';
 import CheckoutPage from './components/checkoutPage.jsx';
+import OrderCompletePage from './components/OrderCompletePage.jsx';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="/earphones" element={<CategoryPage category="earphones" />} />
           <Route path="/product/:slug" element={<ProductDetails />} />
           <Route path="/checkoutPage" element={<CheckoutPage/>} />
+          <Route path="/order-complete" element={<OrderCompletePage />} />
         </Routes>
       </Router>
     </Elements>

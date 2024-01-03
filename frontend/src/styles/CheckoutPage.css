@@ -198,3 +198,18 @@
     }
 }
 
+.error-message{
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    width: 40%;
+    font-size: 20px;
+    height: 20rem;
+    color: red;
+}
+
+
+
+.orange-btn:disabled {
+    background-color: grey;
+  }
