@@ -5,16 +5,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { clearCart } from '../features/cart/cartSlice';
 
 function OrderCompletePage() {
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
 
     const goToHome = () => {
         dispatch(clearCart());
         navigate('/');
     };
  
-
     return (
     <>
         <div className='content-flex'>
@@ -26,8 +25,6 @@ function OrderCompletePage() {
                 <button className='orange-btn' onClick={goToHome}> Back to Website</button>
             </div>
         </div>
-        
-        
     </>
   )
 }

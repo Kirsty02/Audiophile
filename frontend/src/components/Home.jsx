@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
-
-
 import '../styles/Home.css'
 import MyHeader from './MyHeader';
 import heroimg from '/assets/home/tablet/image-header.jpg'; 
@@ -45,7 +43,6 @@ function Home() {
                     <img className='hero-img' src={heroimg}/>
                 </div>
             </div>
-
             <CategoryWidget></CategoryWidget>
             <div className='container-desktop'>
                 <div className='home-gallery'>
@@ -53,8 +50,7 @@ function Home() {
                         <div className='image-container'> 
                             <div className='extra-ring-container'> 
                                 <img src={imageSpeaker}/>
-                            </div>
-                            
+                            </div>                          
                         </div>
                         <div className='top-right-box'>
                             <h1 className='speaker-title'> zx9 Speaker</h1>
@@ -69,8 +65,7 @@ function Home() {
                         <button className='black-btn-reverse' onClick={goToZX7}> See Product</button>
                     </div>
                     <div className='bottom-box'>
-                        <div className='bottom-left-box'>
-                 
+                        <div className='bottom-left-box'>                 
                         </div>
                         <div className='bottom-right-box'>
                             <h4> YX1 Erphones</h4>
@@ -78,11 +73,9 @@ function Home() {
                         </div>
                     </div>
                 </div>
-            </div>
-        
+            </div>       
             <BottomBanner></BottomBanner>
-            <TheFooter></TheFooter>
-            
+            <TheFooter></TheFooter>           
         </div>
     </>
   )

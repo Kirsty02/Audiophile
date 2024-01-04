@@ -1,13 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import '../styles/CategoryWidget.css';
 import headphoneWidget from '/assets/shared/desktop/image-category-thumbnail-headphones.png'; 
 import speakerWidget from '/assets/shared/desktop/image-category-thumbnail-speakers.png'; 
 import earphoneWidget from '/assets/shared/desktop/image-category-thumbnail-earphones.png'; 
-
-
-
 
 function CategoryWidget({ closeNav }) {
 
@@ -17,11 +13,13 @@ function CategoryWidget({ closeNav }) {
         navigate('/headphones');
         closeNav();
     };
+
     const goToSpeakers = () => {
         navigate('/speakers');
         closeNav();
         
     };
+
     const goToEarphones = () => {
         navigate('/earphones');
         closeNav();
@@ -30,7 +28,6 @@ function CategoryWidget({ closeNav }) {
     return (
     <>
         <div className='container-desktop'>
-            
             <div className='widget-row'>
                 <div className='card' onClick={goToHeadphones}>
                     <img className='' src={headphoneWidget}/>
@@ -62,7 +59,6 @@ function CategoryWidget({ closeNav }) {
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </>

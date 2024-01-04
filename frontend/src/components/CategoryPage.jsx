@@ -7,11 +7,9 @@ import CategoryWidget from './CategoryWidget';
 import BottomBanner from './BottomBanner';
 import useWindowSize from '../hooks/useWindowSize';
 
-
-
 function CategoryPage({ category }) {
     const [products, setProducts] = useState([]); 
-    const { width } = useWindowSize(); //Using event listener
+    const { width } = useWindowSize(); 
 
     //Fetching products and images
     useEffect(() => {
@@ -37,9 +35,8 @@ function CategoryPage({ category }) {
 
     const navigate = useNavigate();
 
-    // Handler for when a product is clicked
     const handleProductClick = (slug) => {
-      navigate(`/product/${slug}`); // Navigate to the ProductDetails page
+      navigate(`/product/${slug}`); 
     };
 
     return (
@@ -51,7 +48,6 @@ function CategoryPage({ category }) {
         <div className='content'>
             <div className="container-desktop">
                 {products.map((product, index) => {
-                     // Determine the layout based on the index
                      const layoutClass = index % 2 === 0 ? "item-flex" : "item-flex-reverse";
                      const imageType = getImageType(width);
                      const imageUrl = product.images[imageType]; 

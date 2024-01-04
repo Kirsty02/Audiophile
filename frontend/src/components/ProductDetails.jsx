@@ -2,16 +2,13 @@ import React, {useState, useEffect} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
+import { addToCart } from '../features/cart/cartSlice';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/ProductDetails.css';
-
-import { addToCart } from '../features/cart/cartSlice';
 import MyHeader from './MyHeader';
 import TheFooter from './TheFooter';
 import BottomBanner from './BottomBanner';
 import useWindowSize from '../hooks/useWindowSize';
-
-
 
 function ProductDetails() {
     const dispatch = useDispatch();
@@ -28,28 +25,26 @@ function ProductDetails() {
     const navigate = useNavigate();
 
     const goBack = () => {
-        navigate(-1); // Navigate back to the previous page
+        navigate(-1); 
     };
     
-
     useEffect(() => {
         fetch(`/product/${slug}`)
             .then(response => response.json())
             .then(data => {
                 setProductDetails(data);
-                updateGalleryImages(data.gallery); // Call within the same useEffect
+                updateGalleryImages(data.gallery); 
             })
             .catch(error => console.error('Error fetching product details:', error));
     }, [slug]);
 
     useEffect(() => {
-        // Call updateGalleryImages again when width changes
+       
         if (productDetails) {
             updateGalleryImages(productDetails.gallery);
         }
     }, [width, productDetails]);
 
-    // Update to use current screen width from useWindowSize
     const updateGalleryImages = (gallery) => {
         const imageType = getImageType(width);
 
@@ -67,7 +62,6 @@ function ProductDetails() {
         return <div>Loading...</div>; 
     }
 
-
     const increaseValue = () => {
         setQuantity(prevQuantity => prevQuantity + 1);
     };
@@ -76,7 +70,6 @@ function ProductDetails() {
         setQuantity(prevQuantity => prevQuantity - 1 < 1 ? 1 : prevQuantity - 1);
     };
 
-    // Determine the image type based on width
     const getImageType = (width) => {
         if (width <= 640) return 'mobile';
         if (width <= 1200) return 'tablet';
@@ -87,7 +80,6 @@ function ProductDetails() {
     const imageObject = productDetails.images.find(img => img.image_type === imageType);
     const imageUrl = imageObject ? imageObject.image_url : ''; 
 
-    // Handler for when a product is clicked
     const handleProductClick = (slug) => {
         navigate(`/product/${slug}`); 
     };
@@ -118,7 +110,6 @@ function ProductDetails() {
             progress: undefined,
         });
     };
-
 
     return (
     <>
@@ -167,9 +158,7 @@ function ProductDetails() {
                         </ul>
                     </div>
                 </div>
-
             </div>
-       
             <div className='product-gallery'>
                 <div className='two-img-flex'> 
                     <div className="top-img" style={{ backgroundImage: `url(${topImageUrl})` }}></div>
@@ -178,10 +167,6 @@ function ProductDetails() {
                 <div className='large-img' style={{ backgroundImage: `url(${largeImageUrl})` }}>  
                 </div>
             </div>
-
-
-            
-
             <div className='others-container'>
                 <h4> You may also like</h4>
                 <div className='others-flex'>
@@ -198,8 +183,6 @@ function ProductDetails() {
                     })}
                 </div>
             </div>
-
-
         </div>
         <BottomBanner></BottomBanner>
         <TheFooter></TheFooter>

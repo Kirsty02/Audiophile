@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useSelector} from 'react-redux';
-
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import '../styles/CheckoutPage.css';
@@ -10,120 +9,117 @@ import MyHeader from './MyHeader';
 import TheFooter from './TheFooter';
 
 function CheckoutPage() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const goBack = () => {
-      navigate(-1); 
-    };
-    const goToComplete = () => {
-      navigate('/order-complete');
+  const goBack = () => {
+    navigate(-1); 
   };
-    const cartItems = useSelector(state => state.cart.items);
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [address, setAddress] = useState('');
-    const [zipCode, setZipCode] = useState('');
-    const [city, setCity] = useState('');
-    const [country, setCountry] = useState('');
-    const [paymentMethod, setPaymentMethod] = useState('e-money');
-    const stripe = useStripe();
-    const elements = useElements();
-    const [errorMessage, setErrorMessage] = useState('');
-    const [fieldErrors, setFieldErrors] = useState({});
+  
+  const goToComplete = () => {
+    navigate('/order-complete');
+  };
 
-    const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-    const vat = (totalPrice / 100) * 10;
-    const grandTotal = totalPrice + 50;
+  const cartItems = useSelector(state => state.cart.items);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
+  const [zipCode, setZipCode] = useState('');
+  const [city, setCity] = useState('');
+  const [country, setCountry] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState('e-money');
+  const stripe = useStripe();
+  const elements = useElements();
+  const [errorMessage, setErrorMessage] = useState('');
+  const [fieldErrors, setFieldErrors] = useState({});
+  const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  const vat = (totalPrice / 100) * 10;
+  const grandTotal = totalPrice + 50;
 
-    function abbreviateProductName(name) {
-        let abbreviatedName = name.replace("Mark", "MK");
-        const wordsToRemove = ["Headphones", "Speaker", "Wireless Earphones"];
-        for (const word of wordsToRemove) {
-            if (abbreviatedName.endsWith(word)) {
-                return abbreviatedName.replace(word, "").trim();
-            }
-        }
-        return abbreviatedName;
+  function abbreviateProductName(name) {
+    let abbreviatedName = name.replace("Mark", "MK");
+    const wordsToRemove = ["Headphones", "Speaker", "Wireless Earphones"];
+    for (const word of wordsToRemove) {
+      if (abbreviatedName.endsWith(word)) {
+        return abbreviatedName.replace(word, "").trim();
+         }
+      }
+    return abbreviatedName;
+  }
+
+  const validateForm = () => {
+    let errors = {};
+    if (!name) errors.name = 'Name is required';
+    if (!email) errors.email = 'Email is required';
+    if (!phone) errors.phone = 'Phone number is required';
+    if (!address) errors.address = 'Address is required';
+    if (!zipCode) errors.zipCode = 'Zip code is required';
+    if (!city) errors.city = 'City is required';
+    if (!country) errors.country = 'Country is required';
+    if (paymentMethod === 'e-money') {
+      const cardElement = elements.getElement(CardElement);
+      if (!cardElement || !cardElement._complete) {
+        errors.cardDetails = 'Card details are required';
+      }
     }
-
-    const validateForm = () => {
-      let errors = {};
-      if (!name) errors.name = 'Name is required';
-      if (!email) errors.email = 'Email is required';
-      if (!phone) errors.phone = 'Phone number is required';
-      if (!address) errors.address = 'Address is required';
-      if (!zipCode) errors.zipCode = 'Zip code is required';
-      if (!city) errors.city = 'City is required';
-      if (!country) errors.country = 'Country is required';
-      if (paymentMethod === 'e-money') {
-        const cardElement = elements.getElement(CardElement);
-        if (!cardElement || !cardElement._complete) {
-          errors.cardDetails = 'Card details are required';
-        }
+    if (paymentMethod === 'cod') {
+      const cardElement = elements.getElement(CardElement);
+      if (!cardElement || !cardElement._complete) {
+        errors.cardDetails = '';
       }
+    }
+    return errors;
+  };
+
+
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const validationErrors = validateForm();
+    setFieldErrors(validationErrors);
+      if (Object.keys(validationErrors).length > 0) {
+        return; 
+      }
+
       if (paymentMethod === 'cod') {
-        const cardElement = elements.getElement(CardElement);
-        if (!cardElement || !cardElement._complete) {
-          errors.cardDetails = '';
-        }
-      }
-      return errors;
-    };
-
-
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const validationErrors = validateForm();
-        setFieldErrors(validationErrors);
-        if (Object.keys(validationErrors).length > 0) {
-          return; 
+        goToComplete();
+        return;
       }
 
-        if (paymentMethod === 'cod') {
-            goToComplete();
-            return;
-        }
+      if (!stripe || !elements) {
+        setLoading(false);
+        return;
+      }
 
-        if (!stripe || !elements) {
-            setLoading(false);
-            return;
-        }
+      try {
+        const paymentIntentResponse = await axios.post('/create-payment-intent', {
+          amount: grandTotal * 100,
+        });
 
-        try {
-            const paymentIntentResponse = await axios.post('/create-payment-intent', {
-                amount: grandTotal * 100,
-            });
-
-            const clientSecret = paymentIntentResponse.data.clientSecret;
+        const clientSecret = paymentIntentResponse.data.clientSecret;
             const result = await stripe.confirmCardPayment(clientSecret, {
-                payment_method: {
-                    card: elements.getElement(CardElement),
-                },
-            });
+              payment_method: {
+                card: elements.getElement(CardElement),
+              },
+           });
 
-            if (result.error) {
-                setErrorMessage(result.error.message);
-            } else {
-                if (result.paymentIntent.status === 'succeeded') {
-                    goToComplete();
-                }
+          if (result.error) {
+              setErrorMessage(result.error.message);
+          } else {
+            if (result.paymentIntent.status === 'succeeded') {
+              goToComplete();
             }
+          }
         } catch (error) {
             console.error('Payment error:', error);
             setErrorMessage(error.message);
         }
-
-        setLoading(false);
+      setLoading(false);
     };
-
-    
 
     const isFormValid = () => {
         return Object.keys(validateForm()).length === 0;
     };
-
 
     return (
     <>
@@ -190,9 +186,6 @@ function CheckoutPage() {
                     {fieldErrors.country && <div className="error-message">{fieldErrors.country}</div>}
                   </div>
                 </div>
-                
-                
-
               </div>
               <div className='payment-container '>
                 <p className='sub-title'>Payment Details</p>
@@ -233,7 +226,6 @@ function CheckoutPage() {
                           </div>
                           <div className='right-item'> 
                             <p className='cart-grey'> x{item.quantity}</p>
-
                           </div>
                       </div>
                   ))}
@@ -255,7 +247,6 @@ function CheckoutPage() {
                   <h6 className='checkout-desc'>Grand Total</h6>
                   <h6 className='grand-total-h6'>£ {grandTotal.toFixed(2)}</h6>
                 </div>
-      
                 <form onSubmit={handleSubmit}>
                   {errorMessage && <div className="error-message">{errorMessage}</div>}
                   <button type="submit" className={`orange-btn ${!isFormValid() ? 'disabled-btn' : ''}`} onClick={handleSubmit}>Continue & pay</button>
@@ -264,10 +255,7 @@ function CheckoutPage() {
             </div>
         </div>  
       </div>
-
       </div>
-
-      
       <TheFooter></TheFooter>
     </>
   )

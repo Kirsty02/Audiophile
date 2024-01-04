@@ -1,10 +1,7 @@
 import React from 'react';
-
 import '../styles/BottomBanner.css'
 
-
 function BottomBanner() {
-
   return (
     <>
         <div className='container-desktop'>
