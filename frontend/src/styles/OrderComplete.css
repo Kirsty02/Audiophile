@@ -1,20 +1,62 @@
 .content-flex{
-    background-color: yellow;
-    height: 50vh;
+    height: 100vh;
     width: 100vw;
-    color: red;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.complete-div{
+    background-color: var(--white-dark);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: red;
-    background-color: green;
-    margin-top: 50vh;
 }
 
+
+.complete-div{
+    background-color: white;
+    border-radius: 1rem;
+    height: 40vh;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+
+/* Tablet design*/
+@media(max-width: 150rem){
+    .complete-div h1{
+        font-size: 40px;
+    }
+    .complete-div h3{
+        font-size: 28px;
+    }
+    .complete-div h4{
+        font-size: 25px;
+    }
+    .complete-div h6{
+        font-size: 18px;
+    }
+
+}
+
+/* Mobile design*/
+
+@media(max-width: 100rem){
+    .complete-div h1{
+        font-size: 25px;
+    }
+    .complete-div h3{
+        font-size: 20px;
+    }
+    .complete-div h4{
+        font-size: 15px;
+    }
+    .complete-div h6{
+        font-size: 10px;
+    }
+    .complete-div{
+        width: 80vw;
+        gap: .51rem;
+    }
+}

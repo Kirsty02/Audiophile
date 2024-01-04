@@ -348,3 +348,14 @@
         margin-bottom: 1rem;
     }
 }
+
+
+
+/** Toast notification*/
+.Toastify__toast--success .Toastify__progress-bar--success {
+    background: var(--orange-dark); 
+}
+
+.Toastify__progress-bar {
+    background: var(--orange-dark)
+  }

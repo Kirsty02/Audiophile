@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../styles/ProductDetails.css';
 
 import { addToCart } from '../features/cart/cartSlice';
@@ -96,7 +98,6 @@ function ProductDetails() {
         const mobileImageObject = productDetails.images.find(img => img.image_type === 'mobile');
         const mobileImageUrl = mobileImageObject ? mobileImageObject.image_url : '';
 
-
         dispatch(addToCart({
             id: productDetails.product_id, 
             name: productDetails.name,
@@ -104,15 +105,24 @@ function ProductDetails() {
             quantity: quantity,
             image: mobileImageUrl 
         }));
+        setQuantity(1);
+
+        toast.success("Item added to basket!", {
+            className: 'orange-toast',
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     };
 
-   
-  
-    
 
-    
     return (
     <>
+        <ToastContainer position="top-center" autoClose={3000} />
         <MyHeader></MyHeader>
         <div className='top-black-bar'> 
         </div>

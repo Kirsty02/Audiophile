@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { useSelector } from 'react-redux';
+import { useSelector} from 'react-redux';
+
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import '../styles/CheckoutPage.css';
 import MyHeader from './MyHeader';
 import TheFooter from './TheFooter';
-import OrderCompletePage from './OrderCompletePage';
 
 function CheckoutPage() {
     const navigate = useNavigate();
@@ -56,8 +56,17 @@ function CheckoutPage() {
       if (!zipCode) errors.zipCode = 'Zip code is required';
       if (!city) errors.city = 'City is required';
       if (!country) errors.country = 'Country is required';
-      if (paymentMethod === 'e-money' && !elements.getElement(CardElement)?.complete) {
-          errors.cardDetails = 'Card details are incomplete';
+      if (paymentMethod === 'e-money') {
+        const cardElement = elements.getElement(CardElement);
+        if (!cardElement || !cardElement._complete) {
+          errors.cardDetails = 'Card details are required';
+        }
+      }
+      if (paymentMethod === 'cod') {
+        const cardElement = elements.getElement(CardElement);
+        if (!cardElement || !cardElement._complete) {
+          errors.cardDetails = '';
+        }
       }
       return errors;
     };
@@ -137,19 +146,19 @@ function CheckoutPage() {
                 <div className='half-form-flex'>
                   <div class="form-group">
                     <label for="name"><p>Name</p></label>
-                    <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Alexei Ward" />
+                    <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="John Smith" />
                     {fieldErrors.name && <div className="error-message">{fieldErrors.name}</div>}
                   </div>
                   <div class="form-group">
                     <label for="email"><p>Email Address</p></label>
-                    <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="alexi@mail.com" />
+                    <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="john@mail.com" />
                     {fieldErrors.email && <div className="error-message">{fieldErrors.email}</div>}
                   </div>
                 </div>
                 
                 <div class="form-group">
                   <label for="phone"><p>Phone Number</p></label>
-                  <input type="tel" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+1202-555-0136" />
+                  <input type="tel" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="0131 225 9846" />
                   {fieldErrors.phone && <div className="error-message">{fieldErrors.phone}</div>}
                 </div>
 
@@ -159,18 +168,18 @@ function CheckoutPage() {
                 <p className='sub-title'>Shipping Info</p>
                 <div class="form-group">
                   <label for="address"><p>Address</p></label>
-                  <input type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="1137 Williams Avenue" />
+                  <input type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="21 Castle Hill" />
                   {fieldErrors.address && <div className="error-message">{fieldErrors.address}</div>}
                 </div>
                 <div className='half-form-flex'>
                   <div class="form-group">
                     <label for="zip-code"><p>Zip Code</p></label>
-                    <input type="text" id="zip-code" value={zipCode} onChange={(e) => setZipCode(e.target.value)} placeholder="10001" />
+                    <input type="text" id="zip-code" value={zipCode} onChange={(e) => setZipCode(e.target.value)} placeholder="EH1 2NG" />
                     {fieldErrors.zipCode && <div className="error-message">{fieldErrors.zipCode}</div>}
                   </div>
                   <div class="form-group">
                     <label for="city"><p>City</p></label>
-                    <input type="text" id="city" value={city} onChange={(e) => setCity(e.target.value)} placeholder="New York" />
+                    <input type="text" id="city" value={city} onChange={(e) => setCity(e.target.value)} placeholder="Scotland" />
                     {fieldErrors.city && <div className="error-message">{fieldErrors.city}</div>}
                   </div>
                 </div>
@@ -203,8 +212,9 @@ function CheckoutPage() {
                   </div>
                 </div>
                 <div class="form-group">
-                    <label for="city"><p>Card Details</p></label>
-                    <CardElement />
+                    <label for="card-details"><p>Card Details</p></label>
+                    <CardElement id="card-details"/>
+                    {fieldErrors.cardDetails && <div className="error-message">{fieldErrors.cardDetails}</div>}
                 </div>
 
               </div>
@@ -247,10 +257,7 @@ function CheckoutPage() {
                 </div>
       
                 <form onSubmit={handleSubmit}>
-                  {/* Display error message to user */}
                   {errorMessage && <div className="error-message">{errorMessage}</div>}
-
-                  {/* Disable button based on form validity */}
                   <button type="submit" className={`orange-btn ${!isFormValid() ? 'disabled-btn' : ''}`} onClick={handleSubmit}>Continue & pay</button>
                 </form>
               </div>             

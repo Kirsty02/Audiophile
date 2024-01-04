@@ -12,7 +12,7 @@
 /* Main Container*/ 
 .checkout-main-div{
     width: 630px;
-    height: 1126px;
+    height: 1200px;
     flex-shrink: 0;
     background-color: var(--white-light);
     border-radius: 1rem;

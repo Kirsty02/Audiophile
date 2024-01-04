@@ -15,9 +15,17 @@ function Home() {
 
     const navigate = useNavigate();
 
-    const goToProduct = () => {
-        navigate('/product');
-        closeNav();
+    const goToXX99 = () => {
+      navigate(`/product/xx99-mark-one-headphones`); 
+    };
+    const goToZX9 = () => {
+        navigate(`/product/zx9-speaker`); 
+    };
+    const goToZX7 = () => {
+        navigate(`/product/zx7-speaker`); 
+    };
+    const goToYX1 = () => {
+        navigate(`/product/yx1-earphones`); 
     };
 
     return (
@@ -31,7 +39,7 @@ function Home() {
                     <p className='hero-text'> Experience natural, lifelike audio and exceptional
                         build quality made for the passionate music enthusiast.
                     </p>
-                    <button className='orange-btn' onClick={goToProduct}> See Product</button>
+                    <button className='orange-btn' onClick={goToXX99}> See Product</button>
                 </div>
                 <div className='right-hero'>
                     <img className='hero-img' src={heroimg}/>
@@ -53,12 +61,12 @@ function Home() {
                             <p> Upgrade to premium speakers that are phenomenally
                                  built to deliver truly remarkable sound.
                             </p>
-                            <button className='black-btn'> See Product</button>
+                            <button className='black-btn' onClick={goToZX9}> See Product</button>
                         </div>
                     </div>
                     <div className='middle-box'>
                         <h4> Zx7 Speaker</h4>
-                        <button className='black-btn-reverse'> See Product</button>
+                        <button className='black-btn-reverse' onClick={goToZX7}> See Product</button>
                     </div>
                     <div className='bottom-box'>
                         <div className='bottom-left-box'>
@@ -66,7 +74,7 @@ function Home() {
                         </div>
                         <div className='bottom-right-box'>
                             <h4> YX1 Erphones</h4>
-                            <button className='black-btn-reverse'> See Product</button>
+                            <button className='black-btn-reverse' onClick={goToYX1}> See Product</button>
                         </div>
                     </div>
                 </div>

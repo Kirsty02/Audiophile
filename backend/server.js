@@ -1,7 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const { Pool } = require('pg');
-const stripe = require('stripe')('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'); 
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const stripe = require('stripe')(stripeSecretKey); 
 
 const app = express();
 
