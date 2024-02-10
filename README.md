@@ -28,7 +28,7 @@ These features create a robust, secure, and user-friendly e-commerce platform. R
 ## Screenshots
 ![A screenshot showing the landing page](./screenshots/landingPageAudiophile.png)
 ![A screenshot showing product decription](./screenshots/productDescriptionAudiophile.png)
-![A screenshot showing the cart](./screenshots/cartAudiophile.png)
+![A screenshot showing the cart](./screenshots/CartAudiophile.png)
 ![A screenshot showing the checkout](./screenshots/checkoutAudiophile.png)
 ![A screenshot showing the checkout](./screenshots/validatonAudiophile.png)
 
