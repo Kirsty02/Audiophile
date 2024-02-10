@@ -26,5 +26,5 @@ The Audiophile e-commerce platform is a full-stack web application designed to p
 These features create a robust, secure, and user-friendly e-commerce platform. Responsive design ensures accessibility across devices, dynamic content management allows for easy updates and scalability, secure payment processing is crucial for trust and legality, and interactive UI elements enhance the overall user experience. The use of modern web technologies like React.js, Node.js, Express.js, MongoDB, and Redux supports the application's performance, security, and scalability.
 
 ## Screenshots
-![A screenshot showing the landing page](./images/landingPageAudiophile.png)
+![A screenshot showing the landing page](./screenshots/landingPageAudiophile.png)
 
