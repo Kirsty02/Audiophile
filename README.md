@@ -10,7 +10,7 @@ Markdown
 
 The Audiophile e-commerce platform is a full-stack web application designed to provide a seamless online shopping experience for high-end audio equipment. The platform caters to audiophiles and music enthusiasts looking for quality headphones, speakers, earphones, and accessories. It combines a React.js frontend with an Express.js and Node.js backend and a MongoDB database for data storage.
 
-## Key Features and Their Purposes
+## Key Features 
 
 * **Responsive Web Design (React.js):** Ensures a user-friendly experience across various devices and screen sizes.
 * **Dynamic Product Catalogue (MongoDB):** Enables easy updating and management of product listings.
